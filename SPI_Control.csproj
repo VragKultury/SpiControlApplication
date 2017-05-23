@@ -140,6 +140,7 @@
     <None Include="Resources\upar_nowm2.png" />
     <None Include="Resources\upar_nowm3.png" />
     <None Include="Resources\upar_nowm5.png" />
+    <None Include="Resources\upar_nowm4.png" />
     <Content Include="SPI_logo_32.ico" />
   </ItemGroup>
   <ItemGroup />

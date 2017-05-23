@@ -82,16 +82,16 @@ namespace SPI_Control
             this.Data_Monitor_group = new System.Windows.Forms.GroupBox();
             this.Data_Monitor_Field_rich = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.Data_Console_Field_rich = new System.Windows.Forms.RichTextBox();
             this.Data_Console_group = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Data_Register_box = new System.Windows.Forms.TextBox();
             this.Data_Status_text = new System.Windows.Forms.Label();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.Data_Button_Down = new System.Windows.Forms.Button();
+            this.Data_Button_Left = new System.Windows.Forms.Button();
+            this.Data_Button_Right = new System.Windows.Forms.Button();
+            this.Data_Button_Up = new System.Windows.Forms.Button();
+            this.Data_Button_Remove = new System.Windows.Forms.Button();
+            this.Data_Button_Add = new System.Windows.Forms.Button();
             this.MainTable_TL.SuspendLayout();
             this.All_TL.SuspendLayout();
             this.SerialCom_GB.SuspendLayout();
@@ -660,6 +660,7 @@ namespace SPI_Control
             // 
             // Data_Area
             // 
+            this.Data_Area.AutoSize = true;
             this.Data_Area.ColumnCount = 4;
             this.Data_Area.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
             this.Data_Area.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
@@ -669,13 +670,13 @@ namespace SPI_Control
             this.Data_Area.Controls.Add(this.Data_Monitor_group, 3, 0);
             this.Data_Area.Controls.Add(this.tableLayoutPanel8, 1, 0);
             this.Data_Area.Controls.Add(this.tableLayoutPanel9, 2, 0);
-            this.Data_Area.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Data_Area.Location = new System.Drawing.Point(9, 263);
-            this.Data_Area.Margin = new System.Windows.Forms.Padding(9);
+            this.Data_Area.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Data_Area.Location = new System.Drawing.Point(0, 254);
+            this.Data_Area.Margin = new System.Windows.Forms.Padding(0);
             this.Data_Area.Name = "Data_Area";
             this.Data_Area.RowCount = 1;
             this.Data_Area.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Data_Area.Size = new System.Drawing.Size(580, 231);
+            this.Data_Area.Size = new System.Drawing.Size(598, 246);
             this.Data_Area.TabIndex = 3;
             // 
             // Data_Settings_table
@@ -693,7 +694,7 @@ namespace SPI_Control
             this.Data_Settings_table.RowCount = 2;
             this.Data_Settings_table.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.Data_Settings_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.Data_Settings_table.Size = new System.Drawing.Size(160, 213);
+            this.Data_Settings_table.Size = new System.Drawing.Size(166, 228);
             this.Data_Settings_table.TabIndex = 0;
             // 
             // Data_Source_group
@@ -702,7 +703,7 @@ namespace SPI_Control
             this.Data_Source_group.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Data_Source_group.Location = new System.Drawing.Point(3, 74);
             this.Data_Source_group.Name = "Data_Source_group";
-            this.Data_Source_group.Size = new System.Drawing.Size(154, 136);
+            this.Data_Source_group.Size = new System.Drawing.Size(160, 151);
             this.Data_Source_group.TabIndex = 2;
             this.Data_Source_group.TabStop = false;
             this.Data_Source_group.Text = "Data Source";
@@ -720,7 +721,7 @@ namespace SPI_Control
             this.Data_Source_table.RowCount = 2;
             this.Data_Source_table.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.Data_Source_table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Data_Source_table.Size = new System.Drawing.Size(148, 46);
+            this.Data_Source_table.Size = new System.Drawing.Size(154, 46);
             this.Data_Source_table.TabIndex = 0;
             // 
             // Data_Source_Console_radio
@@ -753,7 +754,7 @@ namespace SPI_Control
             this.Data_Display_group.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Data_Display_group.Location = new System.Drawing.Point(3, 3);
             this.Data_Display_group.Name = "Data_Display_group";
-            this.Data_Display_group.Size = new System.Drawing.Size(154, 65);
+            this.Data_Display_group.Size = new System.Drawing.Size(160, 65);
             this.Data_Display_group.TabIndex = 2;
             this.Data_Display_group.TabStop = false;
             this.Data_Display_group.Text = "Display Format";
@@ -771,7 +772,7 @@ namespace SPI_Control
             this.Data_Display_table.RowCount = 2;
             this.Data_Display_table.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.Data_Display_table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Data_Display_table.Size = new System.Drawing.Size(148, 46);
+            this.Data_Display_table.Size = new System.Drawing.Size(154, 46);
             this.Data_Display_table.TabIndex = 0;
             // 
             // Data_Display_Hex_radio
@@ -802,9 +803,9 @@ namespace SPI_Control
             this.Data_Monitor_group.AutoSize = true;
             this.Data_Monitor_group.Controls.Add(this.Data_Monitor_Field_rich);
             this.Data_Monitor_group.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Data_Monitor_group.Location = new System.Drawing.Point(403, 3);
+            this.Data_Monitor_group.Location = new System.Drawing.Point(415, 3);
             this.Data_Monitor_group.Name = "Data_Monitor_group";
-            this.Data_Monitor_group.Size = new System.Drawing.Size(174, 225);
+            this.Data_Monitor_group.Size = new System.Drawing.Size(180, 240);
             this.Data_Monitor_group.TabIndex = 4;
             this.Data_Monitor_group.TabStop = false;
             this.Data_Monitor_group.Text = "Data Monitor (Read only)";
@@ -812,10 +813,11 @@ namespace SPI_Control
             // Data_Monitor_Field_rich
             // 
             this.Data_Monitor_Field_rich.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Data_Monitor_Field_rich.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Data_Monitor_Field_rich.Location = new System.Drawing.Point(3, 16);
             this.Data_Monitor_Field_rich.Name = "Data_Monitor_Field_rich";
             this.Data_Monitor_Field_rich.ReadOnly = true;
-            this.Data_Monitor_Field_rich.Size = new System.Drawing.Size(168, 206);
+            this.Data_Monitor_Field_rich.Size = new System.Drawing.Size(174, 221);
             this.Data_Monitor_Field_rich.TabIndex = 0;
             this.Data_Monitor_Field_rich.Text = "";
             // 
@@ -823,52 +825,40 @@ namespace SPI_Control
             // 
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Controls.Add(this.Data_Console_Field_rich, 0, 2);
             this.tableLayoutPanel8.Controls.Add(this.Data_Console_group, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.Data_Status_text, 0, 1);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(187, 9);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(193, 9);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(9);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 3;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(160, 213);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(166, 228);
             this.tableLayoutPanel8.TabIndex = 5;
-            // 
-            // Data_Console_Field_rich
-            // 
-            this.Data_Console_Field_rich.Location = new System.Drawing.Point(3, 64);
-            this.Data_Console_Field_rich.MaxLength = 4;
-            this.Data_Console_Field_rich.Name = "Data_Console_Field_rich";
-            this.Data_Console_Field_rich.Size = new System.Drawing.Size(146, 81);
-            this.Data_Console_Field_rich.TabIndex = 1;
-            this.Data_Console_Field_rich.Text = "";
-            this.Data_Console_Field_rich.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Data_Console_Field_rich_KeyDown);
-            this.Data_Console_Field_rich.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Data_Address_Field_rich_KeyPress);
             // 
             // Data_Console_group
             // 
             this.Data_Console_group.AutoSize = true;
-            this.Data_Console_group.Controls.Add(this.textBox1);
+            this.Data_Console_group.Controls.Add(this.Data_Register_box);
             this.Data_Console_group.Dock = System.Windows.Forms.DockStyle.Top;
             this.Data_Console_group.Location = new System.Drawing.Point(3, 3);
             this.Data_Console_group.Name = "Data_Console_group";
-            this.Data_Console_group.Size = new System.Drawing.Size(154, 39);
+            this.Data_Console_group.Size = new System.Drawing.Size(160, 39);
             this.Data_Console_group.TabIndex = 2;
             this.Data_Console_group.TabStop = false;
             this.Data_Console_group.Text = "Data Console";
             // 
-            // textBox1
+            // Data_Register_box
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(3, 16);
-            this.textBox1.MaxLength = 4;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Data_Address_Field_rich_KeyPress);
+            this.Data_Register_box.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Data_Register_box.Location = new System.Drawing.Point(3, 16);
+            this.Data_Register_box.MaxLength = 4;
+            this.Data_Register_box.Name = "Data_Register_box";
+            this.Data_Register_box.Size = new System.Drawing.Size(154, 20);
+            this.Data_Register_box.TabIndex = 0;
+            this.Data_Register_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Data_Address_Field_rich_KeyPress);
             // 
             // Data_Status_text
             // 
@@ -885,73 +875,97 @@ namespace SPI_Control
             this.tableLayoutPanel9.AutoSize = true;
             this.tableLayoutPanel9.ColumnCount = 1;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.button4, 0, 4);
-            this.tableLayoutPanel9.Controls.Add(this.button3, 0, 3);
-            this.tableLayoutPanel9.Controls.Add(this.button2, 0, 1);
-            this.tableLayoutPanel9.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.button5, 0, 2);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(359, 9);
+            this.tableLayoutPanel9.Controls.Add(this.Data_Button_Down, 0, 5);
+            this.tableLayoutPanel9.Controls.Add(this.Data_Button_Left, 0, 4);
+            this.tableLayoutPanel9.Controls.Add(this.Data_Button_Right, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.Data_Button_Up, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.Data_Button_Remove, 0, 3);
+            this.tableLayoutPanel9.Controls.Add(this.Data_Button_Add, 0, 2);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(371, 9);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 5;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(38, 190);
+            this.tableLayoutPanel9.RowCount = 6;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(38, 228);
             this.tableLayoutPanel9.TabIndex = 6;
             // 
-            // button4
+            // Data_Button_Down
             // 
-            this.button4.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm2;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(3, 155);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(32, 32);
-            this.button4.TabIndex = 3;
-            this.button4.UseVisualStyleBackColor = true;
+            this.Data_Button_Down.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm2;
+            this.Data_Button_Down.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Data_Button_Down.Location = new System.Drawing.Point(3, 188);
+            this.Data_Button_Down.Name = "Data_Button_Down";
+            this.Data_Button_Down.Size = new System.Drawing.Size(32, 32);
+            this.Data_Button_Down.TabIndex = 3;
+            this.Data_Button_Down.UseVisualStyleBackColor = true;
+            this.Data_Button_Down.Click += new System.EventHandler(this.Data_Button_Down_Click);
+            this.Data_Button_Down.MouseEnter += new System.EventHandler(this.Data_Button_Down_MouseEnter);
             // 
-            // button3
+            // Data_Button_Left
             // 
-            this.button3.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm3;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(3, 117);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 32);
-            this.button3.TabIndex = 2;
-            this.button3.UseVisualStyleBackColor = true;
+            this.Data_Button_Left.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm3;
+            this.Data_Button_Left.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Data_Button_Left.Location = new System.Drawing.Point(3, 151);
+            this.Data_Button_Left.Name = "Data_Button_Left";
+            this.Data_Button_Left.Size = new System.Drawing.Size(32, 31);
+            this.Data_Button_Left.TabIndex = 2;
+            this.Data_Button_Left.UseVisualStyleBackColor = true;
+            this.Data_Button_Left.Click += new System.EventHandler(this.Data_Button_Left_Click);
+            this.Data_Button_Left.MouseEnter += new System.EventHandler(this.Data_Button_Left_MouseEnter);
             // 
-            // button2
+            // Data_Button_Right
             // 
-            this.button2.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm1;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(3, 41);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 32);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = true;
+            this.Data_Button_Right.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm1;
+            this.Data_Button_Right.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Data_Button_Right.Location = new System.Drawing.Point(3, 40);
+            this.Data_Button_Right.Name = "Data_Button_Right";
+            this.Data_Button_Right.Size = new System.Drawing.Size(32, 31);
+            this.Data_Button_Right.TabIndex = 1;
+            this.Data_Button_Right.UseVisualStyleBackColor = true;
+            this.Data_Button_Right.Click += new System.EventHandler(this.Data_Button_Right_Click);
+            this.Data_Button_Right.MouseEnter += new System.EventHandler(this.Data_Button_Right_MouseEnter);
             // 
-            // button1
+            // Data_Button_Up
             // 
-            this.button1.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.Data_Button_Up.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm;
+            this.Data_Button_Up.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Data_Button_Up.Location = new System.Drawing.Point(3, 3);
+            this.Data_Button_Up.Name = "Data_Button_Up";
+            this.Data_Button_Up.Size = new System.Drawing.Size(32, 31);
+            this.Data_Button_Up.TabIndex = 0;
+            this.Data_Button_Up.UseVisualStyleBackColor = true;
+            this.Data_Button_Up.Click += new System.EventHandler(this.Data_Button_Up_Click);
+            this.Data_Button_Up.MouseEnter += new System.EventHandler(this.Data_Button_Up_MouseEnter);
             // 
-            // button5
+            // Data_Button_Remove
             // 
-            this.button5.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm5;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(3, 79);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(32, 32);
-            this.button5.TabIndex = 4;
-            this.button5.UseVisualStyleBackColor = true;
+            this.Data_Button_Remove.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm5;
+            this.Data_Button_Remove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Data_Button_Remove.Location = new System.Drawing.Point(3, 114);
+            this.Data_Button_Remove.Name = "Data_Button_Remove";
+            this.Data_Button_Remove.Size = new System.Drawing.Size(32, 31);
+            this.Data_Button_Remove.TabIndex = 4;
+            this.Data_Button_Remove.UseVisualStyleBackColor = true;
+            this.Data_Button_Remove.Click += new System.EventHandler(this.Data_Button_Remove_Click);
+            this.Data_Button_Remove.MouseEnter += new System.EventHandler(this.Data_Button_Remove_MouseEnter);
+            // 
+            // Data_Button_Add
+            // 
+            this.Data_Button_Add.BackgroundImage = global::SPI_Control.Properties.Resources.upar_nowm4;
+            this.Data_Button_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Data_Button_Add.Location = new System.Drawing.Point(3, 77);
+            this.Data_Button_Add.Name = "Data_Button_Add";
+            this.Data_Button_Add.Size = new System.Drawing.Size(32, 31);
+            this.Data_Button_Add.TabIndex = 1;
+            this.Data_Button_Add.UseVisualStyleBackColor = true;
+            this.Data_Button_Add.Click += new System.EventHandler(this.Data_Button_Add_Click);
+            this.Data_Button_Add.MouseEnter += new System.EventHandler(this.Data_Button_Add_MouseEnter);
             // 
             // MainForm
             // 
@@ -1077,7 +1091,6 @@ namespace SPI_Control
         private System.Windows.Forms.RadioButton Data_Display_Hex_radio;
         private System.Windows.Forms.RadioButton Data_Display_Bin_radio;
         private System.Windows.Forms.RichTextBox Data_Monitor_Field_rich;
-        private System.Windows.Forms.RichTextBox Data_Console_Field_rich;
         private System.Windows.Forms.GroupBox Data_Monitor_group;
         private System.Windows.Forms.GroupBox Data_Console_group;
         private System.Windows.Forms.GroupBox Data_Source_group;
@@ -1087,11 +1100,12 @@ namespace SPI_Control
         private System.Windows.Forms.Label Data_Status_text;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button Data_Button_Up;
+        private System.Windows.Forms.Button Data_Button_Down;
+        private System.Windows.Forms.Button Data_Button_Left;
+        private System.Windows.Forms.Button Data_Button_Right;
+        private System.Windows.Forms.TextBox Data_Register_box;
+        private System.Windows.Forms.Button Data_Button_Remove;
+        private System.Windows.Forms.Button Data_Button_Add;
     }
 }

@@ -53,7 +53,9 @@ namespace SPI_Control
         bool Data_Source;
         bool Data_Binary;
         string Data_String;
-        int Data_Console;
+        int Data_String_Number;
+
+        int[] Data_Packet = new int[512];
 
         public MainForm()
         {
@@ -92,7 +94,7 @@ namespace SPI_Control
             SPI_DataSize_text.Text = "Data Size: " + SPI_DataSize_scroll.Value.ToString() + " bits";
             Data_Display_Bin_radio.Checked = Data_Binary;
             Data_Display_Hex_radio.Checked = !Data_Binary;
-            Data_Console_Field_rich.Text = Data_String;
+            Data_Monitor_Field_rich.Text = Data_String;
             Data_Source_Console_radio.Checked = Data_Source;
             Data_Source_File_radio.Checked = !Data_Source;
 
@@ -249,6 +251,7 @@ namespace SPI_Control
             if (MainForm.PortStatus)
             {
                 MainForm.comm.DisplayWindow = this.WriteSerialBox;
+                Data_Packet_Format();
                 MainSend_Func(MainForm.SEND_TYPE.SET_TYPE);
                 MainSend_Func(MainForm.SEND_TYPE.DATA_TYPE);
                 //MainSend_cnt = 0;
@@ -328,7 +331,7 @@ namespace SPI_Control
             }
             else
             {
-                if ((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar <= 64 || e.KeyChar >= 71) && e.KeyChar != 8)
+                if ((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar <= 64 || e.KeyChar >= 71) && (e.KeyChar <= 96 || e.KeyChar >= 103) && e.KeyChar != 8)
                 {
                     e.Handled = true;
                 }
@@ -340,31 +343,162 @@ namespace SPI_Control
             Data_Source = Data_Source_Console_radio.Checked;
             Properties.Settings.Default.Data_Source = Data_Source;
             Properties.Settings.Default.Save();
-
-        }
-
-        private void Data_Console_Field()
-        {
-            int _len = Data_Console_Field_rich.Text.Length;
-            if (_len == 4)
-            {
-                Data_Console_Field_rich.Select(0, _len);
-                {
-                    Data_Console = Convert.ToInt32(Data_Console_Field_rich.SelectedText, 16);
-                    Data_Monitor_Field_rich.Text = "0x" + (Convert.ToString(Data_Console, 16)).PadLeft(4, '0') + Environment.NewLine;
-                }
-            Data_Console_Field_rich.SelectionStart = Data_Console_Field_rich.Text.Length;
-            }
         }
 
         private void Data_Console_Field_rich_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Data_Monitor_Field_rich.Text = "0x" + (Convert.ToString(Data_Console, 16)).PadLeft(4, '0');
+                
             }
         }
 
+        private void Data_Packet_Format()
+        {
+            int _max = (Data_Monitor_Field_rich.Text.Length / 7) + 1;
+            for (int i = 0; i < _max; i++)
+            {
+                Data_Monitor_Field_rich.Select(((i * 7) + 2), (((i + 1) * 7) - 2));
+                int _my = Convert.ToInt32(Data_Monitor_Field_rich.SelectedText, 16);
+                Data_Packet[i] = _my;
+            }
+            int g = 0;
+        }
+
+        #region Button Actions
+        /// <summary>
+        /// Button Actions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
+
+        private void Data_Button_Right_Click(object sender, EventArgs e)
+        {
+            int _register = (Data_Register_box.Text != null) ? Convert.ToInt32(Data_Register_box.Text, 16) : 0;
+            Data_Monitor_Field_rich.Select((7 * Data_String_Number), (7 * (Data_String_Number + 1) - 1));
+            Data_Monitor_Field_rich.SelectedText = "0x" + (Convert.ToString(_register, 16)).PadLeft(4, '0').ToUpper();
+            Data_Register_box.Text = null;
+            Data_Monitor_Selection();
+            Data_Status_text.Text = Data_String_Number.ToString();
+            Properties.Settings.Default.Data_String = Data_Monitor_Field_rich.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Data_Button_Add_Click(object sender, EventArgs e)
+        {
+            Data_Monitor_Field_rich.Select((((Data_String_Number + 1) * 7) - 1), 0);
+            Data_Monitor_Field_rich.SelectedText = ((Data_Monitor_Field_rich.Text != null) ? Environment.NewLine : null) + "0x" + (Convert.ToString(0, 16)).PadLeft(4, '0');
+            Data_String_Number++;
+            Data_Monitor_Selection();
+            Data_Status_text.Text = Data_String_Number.ToString();
+            Properties.Settings.Default.Data_String = Data_Monitor_Field_rich.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Data_Button_Remove_Click(object sender, EventArgs e)
+        {
+            Data_String = null;
+            Data_Monitor_Field_rich.Text = "0x0000";
+            Data_Monitor_Selection();
+            Data_Status_text.Text = Data_String_Number.ToString();
+            Properties.Settings.Default.Data_String = Data_Monitor_Field_rich.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Data_Button_Up_Click(object sender, EventArgs e)
+        {
+            Data_String_Number = (Data_String_Number > 0) ? (Data_String_Number - 1) : 0;
+            Data_Monitor_Selection();
+            Data_Status_text.Text = Data_String_Number.ToString();
+            Properties.Settings.Default.Data_String = Data_Monitor_Field_rich.Text;
+            Properties.Settings.Default.Save();
+        }
+
+
+        private void Data_Button_Down_Click(object sender, EventArgs e)
+        {
+            Data_String_Number = (Data_String_Number < (Data_Monitor_Field_rich.Text.Length / 7)) ? (Data_String_Number + 1) : Data_String_Number;
+            Data_Monitor_Selection();
+            Data_Status_text.Text = Data_String_Number.ToString();
+            Properties.Settings.Default.Data_String = Data_Monitor_Field_rich.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Data_Button_Left_Click(object sender, EventArgs e)
+        {
+            //Data_Monitor_Field_rich.Select((Data_String_Number * 7), (((Data_String_Number + 1) * 7) - 1));
+            Data_Monitor_Field_rich.Select(7, 13);
+            Data_Register_box.Text = Data_Monitor_Field_rich.SelectedText;
+            Data_Status_text.Text = Data_String_Number.ToString();
+            Properties.Settings.Default.Data_String = Data_Monitor_Field_rich.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Data_Monitor_Selection()
+        {
+            if (Data_Monitor_Field_rich.Text.Length <= 7)
+            {
+                Data_Monitor_Field_rich.Select(0, 6);
+                Data_Monitor_Field_rich.SelectionColor = Color.Green;
+            }
+            else
+            {
+                Data_Monitor_Field_rich.Select(0, (7 * Data_String_Number) - 1);
+                Data_Monitor_Field_rich.SelectionColor = System.Drawing.SystemColors.WindowText;
+                Data_Monitor_Field_rich.Select((7 * Data_String_Number), (7 * (Data_String_Number + 1) - 1));
+                Data_Monitor_Field_rich.SelectionColor = Color.Green;
+            }
+            Data_Monitor_Field_rich.Select((7 * (Data_String_Number + 1)), Data_Monitor_Field_rich.Text.Length);
+            Data_Monitor_Field_rich.SelectionColor = System.Drawing.SystemColors.WindowText;
+            Data_Monitor_Field_rich.DeselectAll();
+        }
+        #endregion
+
+        #region Button Tooltips
+        /// <summary>
+        /// Button Tooltips
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
+        private void Data_Button_Up_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            t.SetToolTip(Data_Button_Up, "Перемещение по регистрам вверх");
+        }
+
+        private void Data_Button_Right_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            t.SetToolTip(Data_Button_Right, "Загрузить данные в подсвеченный регистр");
+        }
+
+        private void Data_Button_Add_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            t.SetToolTip(Data_Button_Add, "Добавить пустой регистр ниже подсвеченного");
+        }
+
+        private void Data_Button_Remove_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            t.SetToolTip(Data_Button_Remove, "Удалить подсвеченный регистр");
+        }
+
+        private void Data_Button_Left_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            t.SetToolTip(Data_Button_Left, "Взять подсвеченный регистр на редактирование");
+        }
+
+        private void Data_Button_Down_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            t.SetToolTip(Data_Button_Down, "Перемещение по регистрам вниз");
+        }
+        #endregion
+        
         #region Relay On Button Click
         /// <summary>
         /// Relay On Button Click
